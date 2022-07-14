@@ -4,6 +4,7 @@
     <g-button icon="left">按钮1</g-button>
     <g-button>按钮2</g-button>
     <g-button   icon="settings" iconPosition="right">按钮2</g-button>
+     <g-icon name="download"></g-icon>
   </div>
 </template>
 
