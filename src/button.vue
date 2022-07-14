@@ -1,9 +1,18 @@
 <template>
-  <button class="g-button">按钮</button>
+  <button class="g-button" :class="[`icon-${iconPosition}`]">
+    <g-icon class="icon" v-if="icon" :name="icon"></g-icon>
+    <div class="content">
+      <slot></slot>
+    </div>
+  </button>
 </template>
 
 <script>
 export default {
+  props: {
+    icon: {},
+    iconPosition: {},
+  },
   data() {
     return {}
   },
@@ -20,17 +29,36 @@ export default {
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
   background: var(--button-bg);
-}
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  > .icon {
+    order: 1;
+    margin-right: 0.2rem;
+  }
+  > .content {
+    order: 2;
+  }
+  &.icon-right {
+    > .content {
+      order: 1;
+    }
+    > .icon {
+      order: 2;
+      margin-left: 0.2rem;
+    }
+  }
+  &:hover {
+    border-color: var(--border-color-hover);
+  }
 
-.g-button:hover {
-  border-color: var(--border-color-hover);
-}
+  &:active {
+    background-color: var(--button-active-bg);
+  }
 
-.g-button:active {
-  background-color: var(--button-active-bg);
-}
-
-.g-button:focus {
-  outline: none;
+  &:focus {
+    outline: none;
+  }
 }
 </style>
