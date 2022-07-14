@@ -48,6 +48,7 @@ export default {
   align-items: center;
   justify-content: center;
   vertical-align: middle;
+  cursor: pointer;
   > .icon {
     order: 1;
     margin-right: 0.2rem;

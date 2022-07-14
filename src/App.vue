@@ -4,10 +4,16 @@
     <g-button icon="left">按钮1</g-button>
     <g-button icon="left" :loading="loading" @click="handleClick">按钮1</g-button>
     <g-button>按钮2</g-button>
-    <g-button :loading="loading"  @click="handleClick">按钮2</g-button>
+    <g-button :loading="loading" @click="handleClick">按钮2</g-button>
     <g-button icon="settings" iconPosition="right">按钮2</g-button>
-    <g-button icon="settings"  @click="handleClick" :loading="loading" iconPosition="right">按钮2</g-button>
+    <g-button icon="settings" @click="handleClick" :loading="loading" iconPosition="right">按钮2</g-button>
     <g-icon name="download"></g-icon>
+    <hr>
+    <g-button-group>
+      <g-button icon="left">按钮1</g-button>
+      <g-button>按钮2</g-button>
+        <g-button icon="settings" iconPosition="right">按钮3</g-button>
+    </g-button-group>
   </div>
 </template>
 
@@ -18,12 +24,11 @@ export default {
       loading: true,
     }
   },
-  methods:{
-    handleClick(){
-      console.log(111)
-      this.loading=!this.loading
-    }
-  }
+  methods: {
+    handleClick() {
+      this.loading = !this.loading
+    },
+  },
 }
 </script>
 
