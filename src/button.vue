@@ -1,4 +1,5 @@
 <template>
+  <!-- 只有原生的dom能触发原生的click事件，否则，需要手动触发click事件 -->
   <button @click="$emit('click')" class="g-button" :class="[`icon-${iconPosition}`]">
     <g-icon class="icon" v-if="icon&&!loading" :name="icon" />
     <g-icon class="icon loading" v-if="loading" name="loading" />
@@ -19,10 +20,10 @@ export default {
         return value === 'left' || value === 'right'
       },
     },
-    loading:{
-        type:Boolean,
-        default:false
-    }
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {}
@@ -33,10 +34,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
- @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .g-button {
   font-size: var(--font-size);
   height: var(--button-height);
@@ -65,8 +70,8 @@ export default {
       margin-left: 0.2rem;
     }
   }
-  .loading{
-       animation: spin 2s infinite linear;
+  .loading {
+    animation: spin 2s infinite linear;
   }
   &:hover {
     border-color: var(--border-color-hover);
