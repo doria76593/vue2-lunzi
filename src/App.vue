@@ -25,12 +25,12 @@
       <g-col >1</g-col>
       <g-col>2</g-col>
     </g-row>
-    <!-- <g-row>
+    <g-row  gutter="10">
       <g-col>1</g-col>
       <g-col>2</g-col>
       <g-col>3</g-col>
     </g-row>
-    <g-row>
+    <g-row  gutter="10">
       <g-col>1</g-col>
       <g-col>2</g-col>
       <g-col>3</g-col>
@@ -45,10 +45,10 @@
       <g-col span="8" offset="2">11</g-col>
       <g-col span="8" offset="2">11</g-col>
     </g-row>
-    <g-row>
+    <g-row gutter="10">
       <g-col span="4">1</g-col>
       <g-col span="20">11</g-col>
-    </g-row> -->
+    </g-row>
   </div>
 </template>
 
