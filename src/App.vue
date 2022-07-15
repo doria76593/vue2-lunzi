@@ -22,11 +22,24 @@
     <g-input value="王五" disabled></g-input>
     <g-input value="王五" error="错啦错啦错啦"></g-input>
     <h2>布局</h2>
-    <g-row gutter="20">
-      <g-col span="24" :ipad="{span:8}" :narrow-pc="{span:4}" :pc="{span:2}" :wide-pc="{span:1}">
-        1
+    <g-row>
+      <g-col span="24" :narrow-pc="{span:8}">
+        <div class="demo">1</div>
       </g-col>
-      <g-col span="24" :ipad="{span:16}" :narrow-pc="{span:20}" :pc="{span:22}" :wide-pc="{span:23}">11
+      <g-col span="24" :narrow-pc="{span:8}">
+        <div class="demo">2</div>
+      </g-col>
+      <g-col span="24" :narrow-pc="{span:8}">
+        <div class="demo">3</div>
+      </g-col>
+      <g-col span="24" :narrow-pc="{span:8}">
+        <div class="demo">4</div>
+      </g-col>
+      <g-col span="24" :narrow-pc="{span:8}">
+        <div class="demo">5</div>
+      </g-col>
+      <g-col span="24" :narrow-pc="{span:8}">
+        <div class="demo">6</div>
       </g-col>
     </g-row>
   </div>
@@ -51,5 +64,10 @@ export default {
 <style scoped lang="scss">
 h2 {
   margin: 20px;
+}
+.demo {
+  background: #ddd;
+  border: 1px solid #666;
+  height: 100px;
 }
 </style>
