@@ -14,6 +14,11 @@
       <g-button>按钮2</g-button>
       <g-button icon="settings" iconPosition="right">按钮3</g-button>
     </g-button-group>
+    <h2>input</h2>
+    <g-input value="张三" disabled></g-input>
+    <g-input value="李四" readonly></g-input>
+    <g-input value="王五"></g-input>
+    <g-input value="王五" error="错啦错啦错啦"></g-input>
   </div>
 </template>
 
@@ -32,5 +37,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+h2{
+  margin: 20px;
+}
 </style>

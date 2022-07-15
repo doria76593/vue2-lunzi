@@ -7,7 +7,7 @@
 <script>
 import './svg'
 export default {
-  name:'GIcon',
+  name:'GIcon',//通过name,可以在dev-tool上方便调试
   props: ['name'],
 }
 </script>
