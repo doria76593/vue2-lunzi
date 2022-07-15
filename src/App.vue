@@ -17,37 +17,17 @@
     <h2>input</h2>
     <g-input v-model="msg"></g-input>
     {{msg}}
+
     <g-input value="李四" readonly></g-input>
     <g-input value="王五" disabled></g-input>
     <g-input value="王五" error="错啦错啦错啦"></g-input>
     <h2>布局</h2>
-    <g-row gutter="10">
-      <g-col >1</g-col>
-      <g-col>2</g-col>
-    </g-row>
-    <g-row  gutter="10">
-      <g-col>1</g-col>
-      <g-col>2</g-col>
-      <g-col>3</g-col>
-    </g-row>
-    <g-row  gutter="10">
-      <g-col>1</g-col>
-      <g-col>2</g-col>
-      <g-col>3</g-col>
-      <g-col>4</g-col>
-    </g-row>
-    <g-row>
-      <g-col span="2" offset="2">1</g-col>
-      <g-col span="18" offset="2">11</g-col>
-    </g-row>
-       <g-row>
-      <g-col span="2" offset="1">1</g-col>
-      <g-col span="8" offset="2">11</g-col>
-      <g-col span="8" offset="2">11</g-col>
-    </g-row>
-    <g-row gutter="10">
-      <g-col span="4">1</g-col>
-      <g-col span="20">11</g-col>
+    <g-row gutter="20">
+      <g-col span="24" :ipad="{span:8}" :narrow-pc="{span:4}" :pc="{span:2}" :wide-pc="{span:1}">
+        1
+      </g-col>
+      <g-col span="24" :ipad="{span:16}" :narrow-pc="{span:20}" :pc="{span:22}" :wide-pc="{span:23}">11
+      </g-col>
     </g-row>
   </div>
 </template>
@@ -71,11 +51,5 @@ export default {
 <style scoped lang="scss">
 h2 {
   margin: 20px;
-}
-#app{
-  /* border:  1px solid red; */
-  background: rgb(227, 223, 223);
-  width: 1000px;
-  margin: 0 auto;
 }
 </style>
