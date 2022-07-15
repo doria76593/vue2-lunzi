@@ -23,23 +23,8 @@
     <g-input value="王五" error="错啦错啦错啦"></g-input>
     <h2>布局</h2>
     <g-row>
-      <g-col span="24" :narrow-pc="{span:8}">
-        <div class="demo">1</div>
-      </g-col>
-      <g-col span="24" :narrow-pc="{span:8}">
-        <div class="demo">2</div>
-      </g-col>
-      <g-col span="24" :narrow-pc="{span:8}">
-        <div class="demo">3</div>
-      </g-col>
-      <g-col span="24" :narrow-pc="{span:8}">
-        <div class="demo">4</div>
-      </g-col>
-      <g-col span="24" :narrow-pc="{span:8}">
-        <div class="demo">5</div>
-      </g-col>
-      <g-col span="24" :narrow-pc="{span:8}">
-        <div class="demo">6</div>
+      <g-col span="23" offset="1" :narrow-pc="{span:12, offset:12}">
+        <div class="demo"></div>
       </g-col>
     </g-row>
   </div>
