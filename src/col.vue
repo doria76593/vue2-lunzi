@@ -1,8 +1,6 @@
 <template>
-  <div class="col" :class="[span && `col-${span}`, offset && `offset-${offset}`]" :style="{paddingLeft: gutter/2+'px', paddingRight: gutter/2+'px'}">
-    <div class="border">
-      <slot></slot>
-    </div>
+  <div class="col" :class="colClass" :style="colStyle">
+    <slot></slot>
   </div>
 </template>
 <script>
@@ -21,15 +19,21 @@ export default {
       gutter: 0,
     }
   },
+  computed: {
+    colClass() {
+      let { span, offset } = this
+      return [span && `col-${span}`, offset && `offset-${offset}`]
+    },
+    colStyle() {
+      return {
+        paddingLeft: this.gutter / 2 + 'px',
+        paddingRight: this.gutter / 2 + 'px',
+      }
+    },
+  },
   // 执行顺序：row created --> col created--> col mounted-->row mounted.
   //   设置gutter的思路：1-用户从row进行传参，在row mounted 那里进行赋值传递
   // 2-css方面，col通过padding来设置空隙，row通过marginLeft和marginRight来抵消左右的空隙
-  created() {
-    console.log('col created')
-  },
-  mounted() {
-    console.log('col mounted')
-  },
 }
 </script>
 <style scoped lang="scss">
