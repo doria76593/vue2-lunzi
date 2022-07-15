@@ -15,9 +15,10 @@
       <g-button icon="settings" iconPosition="right">按钮3</g-button>
     </g-button-group>
     <h2>input</h2>
-    <g-input value="张三" disabled></g-input>
+    <g-input v-model="msg" ></g-input>
+    {{msg}}
     <g-input value="李四" readonly></g-input>
-    <g-input value="王五"></g-input>
+    <g-input value="王五" disabled></g-input>
     <g-input value="王五" error="错啦错啦错啦"></g-input>
   </div>
 </template>
@@ -27,6 +28,7 @@ export default {
   data() {
     return {
       loading: true,
+      msg:'你好啊'
     }
   },
   methods: {
