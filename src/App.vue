@@ -37,8 +37,13 @@
       <g-col>4</g-col>
     </g-row>
     <g-row>
-      <g-col span="2">1</g-col>
-      <g-col span="22">11</g-col>
+      <g-col span="2" offset="2">1</g-col>
+      <g-col span="18" offset="2">11</g-col>
+    </g-row>
+       <g-row>
+      <g-col span="2" offset="1">1</g-col>
+      <g-col span="8" offset="2">11</g-col>
+      <g-col span="8" offset="2">11</g-col>
     </g-row>
     <g-row>
       <g-col span="4">1</g-col>
