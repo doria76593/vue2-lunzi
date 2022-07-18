@@ -1,6 +1,6 @@
 <template>
-  <div>
-
+  <div class="layout">
+    <slot></slot>
   </div>
 </template>
 
@@ -15,4 +15,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.layout{
+  border:  1px solid green;
+  display: flex;
+  flex-direction: column;
+}
 </style>

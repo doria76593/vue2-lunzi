@@ -1,6 +1,6 @@
 <template>
-  <div>
-
+  <div class="sider">
+    <slot></slot>
   </div>
 </template>
 

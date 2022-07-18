@@ -1,6 +1,6 @@
 <template>
-  <div>
-
+  <div class="header">
+    <slot></slot>
   </div>
 </template>
 
@@ -15,4 +15,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.header {
+}
 </style>
