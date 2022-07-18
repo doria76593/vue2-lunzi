@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'gContent',
   data() {
     return {}
   },
@@ -15,7 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.content{
+.content {
   flex-grow: 1;
 }
 </style>

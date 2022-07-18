@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'gHeader',
   data() {
     return {}
   },
@@ -16,5 +17,6 @@ export default {
 
 <style scoped lang="scss">
 .header {
+  height: 100px;
 }
 </style>

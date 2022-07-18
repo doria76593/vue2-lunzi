@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'gSider',
   data() {
     return {}
   },
@@ -15,4 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.sider{
+    width: 150px;
+}
 </style>
