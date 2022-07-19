@@ -1,5 +1,6 @@
 <template>
-  <div class="tabs-item" :class="classes" @click="onClick">
+<!-- data-name是测试用的 -->
+  <div class="tabs-item" :class="classes" @click="onClick" :data-name="name">
     <slot></slot>
   </div>
 </template>
@@ -24,22 +25,27 @@ export default {
     }
   },
   mounted() {
-    this.eventBus.$on('update:selected', (name) => {
-      this.active = name === this.name
-    })
+    if (this.eventBus) {
+      this.eventBus.$on('update:selected', (name) => {
+        this.active = name === this.name
+      })
+    }
   },
   computed: {
     classes() {
       return {
         active: this.active,
-          disabled: this.disabled
+        disabled: this.disabled,
       }
     },
   },
   methods: {
     onClick() {
-       if (this.disabled) { return }
-      this.eventBus.$emit('update:selected', this.name, this)
+      if (this.disabled) {
+        return
+      }
+      this.eventBus&&this.eventBus.$emit('update:selected', this.name, this)
+       this.$emit('click', this)//用于测试
     },
   },
 }
@@ -47,7 +53,7 @@ export default {
 
 <style scoped lang="scss">
 $blue: #409eff;
-  $disabled-text-color: grey;
+$disabled-text-color: grey;
 .tabs-item {
   padding: 0 1em;
   flex-shrink: 0;
@@ -59,9 +65,9 @@ $blue: #409eff;
     color: $blue;
     font-weight: bold;
   }
-   &.disabled {
-      color: $disabled-text-color;
-      cursor: not-allowed;
-    }
+  &.disabled {
+    color: $disabled-text-color;
+    cursor: not-allowed;
+  }
 }
 </style>
