@@ -25,7 +25,6 @@ export default {
   },
   mounted() {
     this.eventBus.$on('update:selected', (name) => {
-      console.log('name', name)
       this.active = name === this.name
     })
   },
@@ -46,9 +45,14 @@ export default {
 
 <style scoped lang="scss">
 .tabs-item {
+  border: 1px solid red;
   padding: 0 1em;
   flex-shrink: 0;
   cursor: pointer;
+  border: 1px solid green;
+  height: 100%;
+  display: flex;
+  align-items: center;
   &.active {
     background: red;
   }

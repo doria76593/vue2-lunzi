@@ -13,7 +13,6 @@ export default {
   },
 
   mounted() {
-    // console.log('儿子,', this.eventBus)
   },
   methods: {},
   components: {},
