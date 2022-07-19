@@ -1,6 +1,10 @@
 <template>
   <div class="g-toast">
     <slot></slot>
+    <div class="line" ref="line"></div>
+    <span class="close" v-if="closeButton" @click="onClickClose">
+      {{closeButton.text}}
+    </span>
   </div>
 </template>
 <script>
@@ -13,7 +17,16 @@ export default {
     },
     autoCloseDelay: {
       type: Number,
-      default: 2,
+      default: 22222,
+    },
+    closeButton: {
+      type: Object,
+      default() {
+        return {
+          text: '关闭',
+          callback: undefined,
+        }
+      },
     },
   },
   data() {
@@ -28,9 +41,14 @@ export default {
   },
   methods: {
     close() {
-      console.log('this.$el',this.$el)
-      this.$el.remove()//js 删除自己和子节点
-      this.$destroy()//删除事件绑定等
+      this.$el.remove() //js 删除自己和子节点
+      this.$destroy() //删除事件绑定等
+    },
+    onClickClose() {
+      this.close()
+      if (this.closeButton && typeof this.closeButton.callback === 'function') {
+        this.closeButton.callback(this) //this === toast实例
+      }
     },
   },
 }
@@ -41,17 +59,28 @@ $toast-height: 40px;
 $toast-bg: rgba(0, 0, 0, 0.75);
 .g-toast {
   font-size: $font-size;
-  line-height: $toast-height;
+  min-height: $toast-height;
+  line-height: 1.8;
   background: $toast-bg;
   display: flex;
   align-items: center;
   color: #fff;
-  padding: 0 16px;
+  padding: 0px 16px;
   position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 4px;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
+  .close {
+    padding-left: 16px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .line {
+    height: 100%;
+    border-left: 1px solid #666;
+    margin-left: 16px;
+  }
 }
 </style>
