@@ -74,6 +74,7 @@ export default {
     },
     close() {
       this.$el.remove() //js 删除自己和子节点
+      this.$emit('beforeClose')
       this.$destroy() //删除事件绑定等
     },
     onClickClose() {
@@ -89,6 +90,34 @@ export default {
 $font-size: 14px;
 $toast-height: 40px;
 $toast-bg: rgba(0, 0, 0, 0.75);
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .g-toast {
   font-size: $font-size;
   min-height: $toast-height;
@@ -116,14 +145,17 @@ $toast-bg: rgba(0, 0, 0, 0.75);
     margin-left: 16px;
   }
   &.position-top {
+    animation: slide-down 1s;
     top: 0;
     transform: translateX(-50%);
   }
   &.position-bottom {
     bottom: 0;
+    animation: slide-up 1s;
     transform: translateX(-50%);
   }
   &.position-middle {
+    animation: fade-in 1s;
     top: 50%;
     transform: translate(-50%, -50%);
   }
