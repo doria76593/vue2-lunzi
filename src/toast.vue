@@ -1,7 +1,9 @@
 <template>
-  <div class="g-toast">
-    <slot v-if="!enableHtml"></slot>
-    <div v-else v-html="$slots.default[0]"></div>
+  <div class="g-toast" ref="wrapper">
+    <div class="message">
+      <slot v-if="!enableHtml"></slot>
+      <div v-else v-html="$slots.default[0]"></div>
+    </div>
     <div class="line" ref="line"></div>
     <span class="close" v-if="closeButton" @click="onClickClose">
       {{closeButton.text}}
@@ -38,13 +40,24 @@ export default {
     return {}
   },
   mounted() {
-    if (this.autoClose) {
-      setTimeout(() => {
-        this.close()
-      }, this.autoCloseDelay * 1000)
-    }
+    this.updateStyles()
+    this.execAutoClose()
   },
   methods: {
+    updateStyles() {
+      this.$nextTick(() => {
+        this.$refs.line.style.height = `${
+          this.$refs.wrapper.getBoundingClientRect().height
+        }px`
+      })
+    },
+    execAutoClose() {
+      if (this.autoClose) {
+        setTimeout(() => {
+          this.close()
+        }, this.autoCloseDelay * 1000)
+      }
+    },
     close() {
       this.$el.remove() //js 删除自己和子节点
       this.$destroy() //删除事件绑定等
@@ -77,13 +90,16 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   transform: translateX(-50%);
   border-radius: 4px;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
+  .message {
+    padding: 8px 0;
+  }
   .close {
     padding-left: 16px;
     flex-shrink: 0;
     cursor: pointer;
   }
   .line {
-    height: 100%;
+    /* height: 100%;父元素设置了min-height，没设置height，则子元素设置height: 100%无效 */
     border-left: 1px solid #666;
     margin-left: 16px;
   }

@@ -13,7 +13,7 @@ export default {
   methods: {
     handleClick() {
       // this.$toast('我是消息啊~~')
-      this.$toast('<a href="#">我是消息啊~!!</a>', {
+      this.$toast('我是消息啊~', {
         enableHtml: false,
         closeButton: {
           text: '点我××',
