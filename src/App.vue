@@ -1,16 +1,16 @@
 <template>
   <div>
-    <demo2></demo2>
+    <demo3></demo3>
   </div>
 </template>
 
 <script>
 import demo1 from './cs/demo1.vue'
 import demo2 from './cs/demo2.vue'
+import demo3 from './cs/demo3.vue'
 export default {
   components: {
-    // demo1,
-    demo2
+    demo3
   },
   data() {
     return {}
