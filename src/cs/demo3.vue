@@ -15,7 +15,7 @@ export default {
       this.$toast(
         `你的智商目前为 ${parseInt(Math.random() * 100)}。你的智商需要充值！`,
         {
-          position: 'top',
+          position: 'middle',
           enableHtml: false,
           closeButton: {
             text: '已充值',
@@ -23,7 +23,6 @@ export default {
               console.log('他说已经充值智商了')
             },
           },
-          autoClose: false,
         }
       )
     },
