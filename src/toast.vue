@@ -6,10 +6,33 @@
 <script>
 export default {
   name: 'GToast',
+  props: {
+    autoClose: {
+      type: Boolean,
+      default: true,
+    },
+    autoCloseDelay: {
+      type: Number,
+      default: 2,
+    },
+  },
   data() {
     return {}
   },
-  methods: {},
+  mounted() {
+    if (this.autoClose) {
+      setTimeout(() => {
+        this.close()
+      }, this.autoCloseDelay * 1000)
+    }
+  },
+  methods: {
+    close() {
+      console.log('this.$el',this.$el)
+      this.$el.remove()//js 删除自己和子节点
+      this.$destroy()//删除事件绑定等
+    },
+  },
 }
 </script>
 <style scoped lang="scss">
@@ -29,6 +52,6 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   left: 50%;
   transform: translateX(-50%);
   border-radius: 4px;
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.50);
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
 }
 </style>

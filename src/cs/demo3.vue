@@ -5,9 +5,11 @@
 </template>
 <script>
 export default {
+
   data() {
     return {}
   },
+
   methods: {
     handleClick() {
       this.$toast('我是msg')
