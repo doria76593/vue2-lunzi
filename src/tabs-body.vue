@@ -1,26 +1,24 @@
 <template>
   <div class="tabs-body">
-
+    <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'GBody',
-  data () {
-    return {
-
-    }
+  name: 'GBody',
+  inject: ['eventBus'],
+  data() {
+    return {}
   },
-  methods: {
 
+  mounted() {
+    // console.log('儿子,', this.eventBus)
   },
-  components: {
-
-  }
+  methods: {},
+  components: {},
 }
 </script>
 
 <style scoped lang="scss">
-
 </style>

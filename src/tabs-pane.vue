@@ -1,26 +1,44 @@
 <template>
-  <div class="tabs-pane">
-   <slot></slot>
+  <div class="tabs-pane" :class="classes" v-if="active">
+    <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'GTabsPane',
-  data () {
-    return {
-
-    }
+  name: 'GTabsPane',
+  inject: ['eventBus'],
+  props: {
+    name: {
+      type: String | Number,
+      required: true,
+    },
   },
-  methods: {
-
+  data() {
+    return { active: false }
   },
-  components: {
-
-  }
+  mounted() {
+    this.eventBus.$on('update:selected', (name) => {
+      console.log('name', name)
+      this.active = name === this.name
+    })
+  },
+  computed: {
+    classes() {
+      return {
+        active: this.active,
+      }
+    },
+  },
+  methods: {},
+  components: {},
 }
 </script>
 
 <style scoped lang="scss">
-
+.tabs-pane {
+  &.active {
+    /* background: red; */
+  }
+}
 </style>

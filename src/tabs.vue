@@ -4,11 +4,17 @@
   </div>
 </template>
 <script>
+import Vue from 'vue'
 export default {
   name: 'GTabs',
+  provide() {
+    return {
+      eventBus: this.eventBus,
+    }
+  },
   props: {
     selected: {
-      type: String,
+      type: String | Number,
       required: true,
     },
     direction: {
@@ -19,8 +25,13 @@ export default {
       },
     },
   },
-  created() {
-    // this.$emit('update:selected', 'xxx')
+  data() {
+    return {
+      eventBus: new Vue(),
+    }
+  },
+  mounted() {
+     this.eventBus.$emit('update:selected', this.selected)
   },
 }
 </script>

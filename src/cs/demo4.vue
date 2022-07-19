@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- <g-tabs :selected="selectedTab" @update:selected="selectedTab=$event"> 等价于以下 -->
     <g-tabs :selected.sync="selectedTab">
       <g-tabs-head>
         <template slot="actions">
@@ -34,7 +35,7 @@ export default {
   components: {},
   data() {
     return {
-       selectedTab: 'sports'
+      selectedTab: 'sports',
     }
   },
   methods: {},
