@@ -21,8 +21,11 @@ export default {
       default: true,
     },
     autoCloseDelay: {
-      type: Number,
+      type: [Boolean, Number],
       default: 3,
+      validator(value) {
+        return value === false || typeof value === 'number'
+      },
     },
     closeButton: {
       type: Object,
