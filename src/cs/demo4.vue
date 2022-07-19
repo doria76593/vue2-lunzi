@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="demo4box">
+    <div class="hhh"></div>
     <!-- <g-tabs :selected="selectedTab" @update:selected="selectedTab=$event"> 等价于以下 -->
     <g-tabs :selected.sync="selectedTab">
       <g-tabs-head>
@@ -7,10 +8,10 @@
           <button>设置</button>
         </template>
         <g-tabs-item name="woman">
-          <g-icon name="settings"></g-icon>美女
+          <g-icon name="settings"></g-icon>美女美女美
         </g-tabs-item>
         <g-tabs-item name="finance" disabled>
-          财经
+          财经财
         </g-tabs-item>
         <g-tabs-item name="sports">
           体育
@@ -42,4 +43,11 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+.demo4box{
+  /* padding-left: 1000px; */
+}
+.hhh{
+  /* height: 2000px; */
+}
+
 </style>
