@@ -12,6 +12,7 @@
 
 <script>
 // 思路：1-通过两个node.contains来判断是否触发事件
+// 2- 可以通过延迟来设置 当hover触发的时候，鼠标移动到内容上 内容是否显示
 export default {
   name: 'GPopover',
   data() {
@@ -159,6 +160,10 @@ $border-radius: 4px;
     content: '';
     display: block;
     border: 10px solid transparent;
+    /* border-top: 10px solid yellow;
+    border-bottom: 10px solid yellowgreen;
+    border-left: 10px solid green;
+    border-right: 10px solid red; */
     width: 0;
     height: 0;
     position: absolute;
@@ -167,9 +172,12 @@ $border-radius: 4px;
   &.position-top {
     transform: translateY(-100%);
     margin-top: -10px;
+    
     &::before,
     &::after {
       left: 10px;
+      /* 解决抖动 */
+      border-bottom: none;
     }
     &::before {
       border-top-color: $border-color;
@@ -185,6 +193,7 @@ $border-radius: 4px;
     &::before,
     &::after {
       left: 10px;
+      border-top: none;
     }
     &::before {
       border-bottom-color: $border-color;
@@ -200,6 +209,7 @@ $border-radius: 4px;
     margin-left: -10px;
     &::before,
     &::after {
+      border-right: none;
       transform: translateY(-50%);
       top: 50%;
     }
@@ -216,6 +226,7 @@ $border-radius: 4px;
     margin-left: 10px;
     &::before,
     &::after {
+      border-left: none;
       transform: translateY(-50%);
       top: 50%;
     }
