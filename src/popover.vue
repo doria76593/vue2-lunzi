@@ -53,19 +53,26 @@ export default {
       let { height: height2 } = contentWrapper.getBoundingClientRect()
       let { x, y } = this.getScroll()
 
-      if (this.position === 'top') {
-        contentWrapper.style.left = x + left + 'px'
-        contentWrapper.style.top = y + top + 'px'
-      } else if (this.position === 'bottom') {
-        contentWrapper.style.left = x + left + 'px'
-        contentWrapper.style.top = y + top + height + 'px'
-      } else if (this.position === 'left') {
-        contentWrapper.style.left = x + left + 'px'
-        contentWrapper.style.top = y + top + (height - height2) / 2 + 'px'
-      } else if (this.position === 'right') {
-        contentWrapper.style.left = x + left + width + 'px'
-        contentWrapper.style.top = y + top + (height - height2) / 2 + 'px'
+      let positions = {
+        top: {
+          top: y + top,
+          left: x + left,
+        },
+        bottom: {
+          top: y + top + height,
+          left: x + left,
+        },
+        left: {
+          top: y + top + (height - height2) / 2,
+          left: x + left,
+        },
+        right: {
+          top: y + top + (height - height2) / 2,
+          left: x + left + width,
+        },
       }
+      contentWrapper.style.left = positions[this.position].left + 'px'
+      contentWrapper.style.top = positions[this.position].top + 'px'
     },
     onClick(ev) {
       let bool = this.$refs.triggerWrapper.contains(ev.target)
@@ -172,7 +179,7 @@ $border-radius: 4px;
       top: 50%;
     }
     &::before {
-      border-left-color:  $border-color;
+      border-left-color: $border-color;
       left: 100%;
     }
     &::after {
@@ -188,7 +195,7 @@ $border-radius: 4px;
       top: 50%;
     }
     &::before {
-      border-right-color:  $border-color;
+      border-right-color: $border-color;
       right: 100%;
     }
     &::after {
