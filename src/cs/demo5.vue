@@ -1,5 +1,5 @@
 <template>
-  <div style="padding-top: 100px; padding-left: 100px;">
+  <div style="padding-top: 100px; padding-left: 100px;  border: 1px solid red;">
     <g-popover>
       <template #content>
         <div>popover内容</div>
