@@ -1,7 +1,7 @@
 <template>
   <div class="popover" ref="popover">
     <div ref="contentWrapper" class="content-wrapper" :class="{[`position-${position}`]:true}" v-if="visible">
-      <slot name="content"></slot>
+      <slot name="content" :close="close"></slot>
     </div>
     <span ref="triggerWrapper" style="display: inline-block;">
       <slot></slot>
@@ -99,9 +99,7 @@ export default {
       contentWrapper.style.top = positions[this.position].top + 'px'
     },
     onClick(ev) {
-      console.log(ev.target)
       let bool = this.$refs.triggerWrapper.contains(ev.target)
-      console.log(bool)
       if (bool) {
         if (this.visible === false) {
           this.open()
