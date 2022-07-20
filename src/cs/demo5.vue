@@ -1,6 +1,6 @@
 <template>
   <div style="padding-top: 100px; padding-left: 100px;">
-    <div style="padding-top: 10px;overflow: hidden;  border: 1px solid red;">
+    <div style="overflow: hidden;  border: 1px solid red;">
       <g-popover>
         <template #content>
           <div>popover内容</div>
