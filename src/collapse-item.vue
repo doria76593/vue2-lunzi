@@ -1,6 +1,6 @@
 <template>
   <div class="collapseItem">
-    <div class="title" @click="toggle">{{title}}--{{single}}</div>
+    <div class="title" @click="toggle">{{title}}</div>
     <div class="content" v-if="open">
       <slot></slot>
     </div>
@@ -36,9 +36,9 @@ export default {
         }
       } else {
         if (name.indexOf(this.name) > -1) {
-         this.show()
+          this.show()
         } else {
-         this.close()
+          this.close()
         }
       }
     })
@@ -65,11 +65,13 @@ $grey: #ddd;
 $border-radius: 4px;
 .collapseItem {
   border-bottom: 1px solid $grey;
+ 
   &:last-child {
     border-bottom: none;
   }
   > .title {
     cursor: pointer;
+     background: lighten($grey, 8%);
     min-height: 32px;
     display: flex;
     align-items: center;
