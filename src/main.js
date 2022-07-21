@@ -22,6 +22,7 @@ import TabsPane from './tabs-pane.vue'
 import Popover from './popover.vue'
 import Collapse from './collapse.vue'
 import CollapseItem from './collapse-item.vue'
+import Cascader from './cascader.vue'
 
 Vue.config.productionTip = false
 Vue.component('g-icon', Icon)
@@ -44,6 +45,7 @@ Vue.component('g-tabs-pane', TabsPane)
 Vue.component('g-popover', Popover)
 Vue.component('g-collapse', Collapse)
 Vue.component('g-collapse-item', CollapseItem)
+Vue.component('g-cascader', Cascader)
 Vue.use(plugin)
 
 new Vue({

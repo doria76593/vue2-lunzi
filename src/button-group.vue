@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name:'GButtonGroup',
+  name: 'GButtonGroup',
   data() {
     return {}
   },
@@ -25,6 +25,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import 'var.scss';
 .g-button-group {
   display: inline-flex;
   align-items: center;
@@ -32,18 +33,17 @@ export default {
     border-radius: 0;
     margin-left: -1px;
     &:hover {
-      /* border-color: var(--border-color-hover) !important; */
       position: relative;
       z-index: 10;
     }
     &:first-child {
       margin-left: 0px;
-      border-top-left-radius: var(--border-radius);
-      border-bottom-left-radius: var(--border-radius);
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
     }
     &:last-child {
-      border-top-right-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
     }
   }
 }
