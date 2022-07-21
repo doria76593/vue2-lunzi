@@ -20,6 +20,8 @@ import TabsHead from './tabs-head.vue'
 import TabsItem from './tabs-item.vue'
 import TabsPane from './tabs-pane.vue'
 import Popover from './popover.vue'
+import Collapse from './collapse.vue'
+import CollapseItem from './collapse-item.vue'
 
 Vue.config.productionTip = false
 Vue.component('g-icon', Icon)
@@ -40,6 +42,8 @@ Vue.component('g-tabs-head', TabsHead)
 Vue.component('g-tabs-item', TabsItem)
 Vue.component('g-tabs-pane', TabsPane)
 Vue.component('g-popover', Popover)
+Vue.component('g-collapse', Collapse)
+Vue.component('g-collapse-item', CollapseItem)
 Vue.use(plugin)
 
 new Vue({
