@@ -4,7 +4,8 @@
       {{result}}
     </div>
     <div class="popover-wrapper" v-if="popoverVisible">
-      <cascader-items :items="source" class="popover" :loadData="loadData" :height="popoverHeight" :selected="selected" @update:selected="onUpdateSelected"></cascader-items>
+      <cascader-items :items="source" class="popover" :loading-item="loadingItem" :loadData="loadData" :height="popoverHeight" :selected="selected"
+        @update:selected="onUpdateSelected"></cascader-items>
     </div>
   </div>
 </template>
@@ -15,7 +16,7 @@ import ClickOutside from './click-outside'
 export default {
   name: 'GuluCascader',
   components: { CascaderItems },
-  directives: {ClickOutside},
+  directives: { ClickOutside },
   props: {
     source: {
       type: Array,
@@ -34,6 +35,7 @@ export default {
   data() {
     return {
       popoverVisible: false,
+      loadingItem: {},
     }
   },
   methods: {
@@ -88,6 +90,7 @@ export default {
       }
 
       let updateSource = (result) => {
+        this.loadingItem = {}
         let copy = JSON.parse(JSON.stringify(this.source))
         let toUpdate = complex(copy, lastItem.id)
         // console.log('toUpdate', toUpdate)
@@ -97,6 +100,7 @@ export default {
       }
       if (!lastItem.isLeaf) {
         this.loadData && this.loadData(lastItem, updateSource)
+        this.loadingItem = lastItem
       }
     },
   },

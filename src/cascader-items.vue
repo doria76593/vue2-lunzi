@@ -3,11 +3,19 @@
     <div class="left">
       <div class="label" v-for="item in items" :key="item.name" @click="onClickLabel(item)">
         <span class="name">{{item.name}}</span>
-        <g-icon class="icon" v-if="rightArrowVisible(item)" name="right"></g-icon>
+        <span class="icons">
+          <template v-if="item.name === loadingItem.name">
+            <g-icon class="loading" name="loading"></g-icon>
+          </template>
+          <template v-else>
+            <g-icon class="next" v-if="rightArrowVisible(item)" name="right"></g-icon>
+          </template>
+        </span>
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <gulu-cascader-items :items="rightItems" :loadData="loadData" :height="height" :selected="selected" :level="level+1" @update:selected="onUpdateSelected">
+      <gulu-cascader-items :loading-item="loadingItem" :items="rightItems" :loadData="loadData" :height="height" :selected="selected" :level="level+1"
+        @update:selected="onUpdateSelected">
       </gulu-cascader-items>
     </div>
   </div>
@@ -33,6 +41,10 @@ export default {
     },
     loadData: {
       type: Function,
+    },
+    loadingItem: {
+      type: Object,
+      default: () => ({}),
     },
   },
   data() {
@@ -103,9 +115,15 @@ export default {
       margin-right: 1em;
       user-select: none;
     }
-    .icon {
+    .icons {
       margin-left: auto;
-      transform: scale(0.5);
+      .next {
+        transform: scale(0.6);
+      }
+      .loading {
+         transform: scale(0.7);
+        animation: spin 2s infinite linear;
+      }
     }
   }
 }

@@ -11,7 +11,7 @@ import demo4 from './cs/demo4.vue'
 import demo7 from './cs/demo7.vue'
 export default {
   components: {
-    demo7,
+    demo7,demo1
   },
   data() {
     return {}
