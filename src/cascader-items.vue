@@ -7,7 +7,8 @@
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <gulu-cascader-items :items="rightItems" :loadData="loadData"  :height="height" :selected="selected" :level="level+1" @update:selected="onUpdateSelected"></gulu-cascader-items>
+      <gulu-cascader-items :items="rightItems" :loadData="loadData" :height="height" :selected="selected" :level="level+1" @update:selected="onUpdateSelected">
+      </gulu-cascader-items>
     </div>
   </div>
 </template>
@@ -91,19 +92,19 @@ export default {
     border-left: 1px solid $border-color-light;
   }
   .label {
-   padding: .5em 1em;
+    padding: 0.5em 1em;
     display: flex;
     align-items: center;
     white-space: nowrap;
-         &:hover {
-        background: $grey;
-      }
-      > .name {
-        margin-right: 1em;
-        user-select: none;
-      }
+    &:hover {
+      background: $grey;
+    }
+    > .name {
+      margin-right: 1em;
+      user-select: none;
+    }
     .icon {
-       margin-left: auto;
+      margin-left: auto;
       transform: scale(0.5);
     }
   }
