@@ -1,5 +1,5 @@
 <template>
-  <div class="cascader" ref="cascader">
+  <div class="cascader" ref="cascader" v-click-outside="close">
     <div class="trigger" @click="toggle">
       {{result}}
     </div>
@@ -11,9 +11,11 @@
 
 <script>
 import CascaderItems from './cascader-items'
+import ClickOutside from './click-outside'
 export default {
   name: 'GuluCascader',
   components: { CascaderItems },
+  directives: {ClickOutside},
   props: {
     source: {
       type: Array,
@@ -35,23 +37,11 @@ export default {
     }
   },
   methods: {
-    onClickDocument(e) {
-      let { cascader } = this.$refs
-      let { target } = e
-      if (cascader === target || cascader.contains(target)) {
-        return
-      }
-      this.close()
-    },
     open() {
       this.popoverVisible = true
-      this.$nextTick(() => {
-        document.addEventListener('click', this.onClickDocument)
-      })
     },
     close() {
       this.popoverVisible = false
-      document.removeEventListener('click', this.onClickDocument)
     },
     toggle() {
       if (this.popoverVisible === true) {
@@ -100,7 +90,7 @@ export default {
       let updateSource = (result) => {
         let copy = JSON.parse(JSON.stringify(this.source))
         let toUpdate = complex(copy, lastItem.id)
-        console.log('toUpdate', toUpdate)
+        // console.log('toUpdate', toUpdate)
 
         toUpdate.children = result
         this.$emit('update:source', copy)

@@ -1,0 +1,26 @@
+let onClickDocument = (e) => {
+    let { target } = e
+    callbacks.forEach((item) => {
+        if (target === item.el || item.el.contains(target)) {
+            return
+        } else {
+            item.callback()
+        }
+    })
+}
+document.addEventListener('click', onClickDocument)
+let callbacks = []
+
+export default {
+    bind: (el, binding, vnode)=> {
+        console.log(el)
+        console.log(binding)
+        callbacks.push({ el, callback: binding.value })
+    }
+}
+
+let removeListener = () => {
+    document.removeEventListener('click', onClickDocument)
+}
+
+export { removeListener }
