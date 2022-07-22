@@ -39,15 +39,34 @@ export default {
       let lastItem = newSelected[newSelected.length - 1]
       //  通过 lastItem中的id去找到对应元素，把请求的结果添加children属性上
 
+      let simplest = (children, id) => {
+        return children.filter((item) => item.id === id)[0]
+      }
       let complex = (children, id) => {
-        for (let i = 0; i < children.length; i++) {
-          let child = children[i]
-          if (!child.children || child.children.length == 0) {
-            if (child.id === id) {
-              return child
-            }
+        let noChildren = []
+        let hasChildren = []
+        children.forEach((item) => {
+          if (item.children) {
+            hasChildren.push(item)
           } else {
-            complex(child.children, id)
+            noChildren.push(item)
+          }
+        })
+        let found = simplest(noChildren, id)
+        if (found) {
+          return found
+        } else {
+          found = simplest(hasChildren, id)
+          if (found) {
+            return found
+          } else {
+            for (let i = 0; i < hasChildren.length; i++) {
+              found = complex(hasChildren[i].children, id)
+              if (found) {
+                return found
+              }
+            }
+            return undefined
           }
         }
       }
@@ -56,6 +75,7 @@ export default {
         let copy = JSON.parse(JSON.stringify(this.source))
         let toUpdate = complex(copy, lastItem.id)
         console.log('toUpdate', toUpdate)
+
         toUpdate.children = result
         this.$emit('update:source', copy)
       }

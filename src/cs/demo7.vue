@@ -3,7 +3,6 @@
     <p>{{selected &&selected[0] &&selected[0].name || '空'}}</p>
     <p>{{selected &&selected[1] &&selected[1].name || '空'}}</p>
     <p>{{selected &&selected[2] &&selected[2].name || '空'}}</p>
-       <pre>{{selected}}</pre>
     <g-cascader :source.sync="source" popover-height="200px" :selected.sync="selected" :load-data="loadData"></g-cascader>
  
   </div>
@@ -11,12 +10,12 @@
 
 <script>
 import db from '../db'
-console.log('db',db)
+// console.log('db',db)
 function ajax(parentId = 0) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let result = db.filter((item) => item.parent_id == parentId)
-      console.log('result', result)
+      console.log('ajax-result', result)
       resolve(result)
     }, 300)
   })
