@@ -35,13 +35,29 @@ export default {
   },
   methods: {
     onUpdateSelected(newSelected) {
-       console.log(3333)
       this.$emit('update:selected', newSelected)
       let lastItem = newSelected[newSelected.length - 1]
-      console.log('lastItem', lastItem)
+      //  通过 lastItem中的id去找到对应元素，把请求的结果添加children属性上
+
+      let complex = (children, id) => {
+        for (let i = 0; i < children.length; i++) {
+          let child = children[i]
+          if (!child.children || child.children.length == 0) {
+            if (child.id === id) {
+              return child
+            }
+          } else {
+            complex(child.children, id)
+          }
+        }
+      }
+
       let updateSource = (result) => {
-        let toUpdate = this.source.filter((item) => item.id === lastItem.id)[0]
-        this.$set(toUpdate, 'children', result)
+        let copy = JSON.parse(JSON.stringify(this.source))
+        let toUpdate = complex(copy, lastItem.id)
+        console.log('toUpdate', toUpdate)
+        toUpdate.children = result
+        this.$emit('update:source', copy)
       }
 
       this.loadData(lastItem, updateSource)
