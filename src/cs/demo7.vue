@@ -1,6 +1,8 @@
 <template>
   <div style="padding:20px">
-    <g-cascader :source="source"></g-cascader>
+    <p>11111</p>
+    <g-cascader :source="source" popover-height="200px"></g-cascader>
+    <p>22222</p>
   </div>
 </template>
 
