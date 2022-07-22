@@ -2,12 +2,12 @@
   <div class="cascaderItem" :style="{height: height}">
     <div class="left">
       <div class="label" v-for="item in items" :key="item.name" @click="onClickLabel(item)">
-        {{item.name}}
-        <g-icon class="icon" v-if="item.children" name="right"></g-icon>
+        <span class="name">{{item.name}}</span>
+        <g-icon class="icon" v-if="rightArrowVisible(item)" name="right"></g-icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <gulu-cascader-items :items="rightItems" :height="height" :selected="selected" :level="level+1" @update:selected="onUpdateSelected"></gulu-cascader-items>
+      <gulu-cascader-items :items="rightItems" :loadData="loadData"  :height="height" :selected="selected" :level="level+1" @update:selected="onUpdateSelected"></gulu-cascader-items>
     </div>
   </div>
 </template>
@@ -30,6 +30,9 @@ export default {
       type: Number,
       default: 0,
     },
+    loadData: {
+      type: Function,
+    },
   },
   data() {
     return {
@@ -37,6 +40,9 @@ export default {
     }
   },
   methods: {
+    rightArrowVisible(item) {
+      return this.loadData ? !item.isLeaf : item.children
+    },
     onClickLabel(item) {
       // 因为点击选中的就是最后一项
       let copy = JSON.parse(JSON.stringify(this.selected))
@@ -85,12 +91,19 @@ export default {
     border-left: 1px solid $border-color-light;
   }
   .label {
-    padding: 0.3em 1em;
+   padding: .5em 1em;
     display: flex;
     align-items: center;
     white-space: nowrap;
+         &:hover {
+        background: $grey;
+      }
+      > .name {
+        margin-right: 1em;
+        user-select: none;
+      }
     .icon {
-      margin-left: 1em;
+       margin-left: auto;
       transform: scale(0.5);
     }
   }
