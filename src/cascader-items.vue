@@ -2,7 +2,7 @@
   <div class="cascaderItem" :style="{height: height}">
     <div class="left">
       <div class="label" v-for="item in items" :key="item.name" @click="onClickLabel(item)">
-        {{item.name}}-{{level}}
+        {{item.name}}
         <g-icon class="icon" v-if="item.children" name="right"></g-icon>
       </div>
     </div>
@@ -41,7 +41,7 @@ export default {
       // 因为点击选中的就是最后一项
       let copy = JSON.parse(JSON.stringify(this.selected))
       copy[this.level] = item
-      copy.splice(this.level+1)
+      copy.splice(this.level + 1)
       this.$emit('update:selected', copy)
     },
     onUpdateSelected(newSelected) {
@@ -67,9 +67,10 @@ export default {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 100px;
   cursor: pointer;
+
   .left {
+    overflow: auto;
     height: 100%;
     padding: 0.3em 0;
   }
