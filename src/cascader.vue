@@ -24,6 +24,9 @@ export default {
       type: Array,
       default: () => [],
     },
+    loadData: {
+      type: Function,
+    },
   },
   data() {
     return {
@@ -32,7 +35,16 @@ export default {
   },
   methods: {
     onUpdateSelected(newSelected) {
+       console.log(3333)
       this.$emit('update:selected', newSelected)
+      let lastItem = newSelected[newSelected.length - 1]
+      console.log('lastItem', lastItem)
+      let updateSource = (result) => {
+        let toUpdate = this.source.filter((item) => item.id === lastItem.id)[0]
+        this.$set(toUpdate, 'children', result)
+      }
+
+      this.loadData(lastItem, updateSource)
     },
   },
   computed: {
