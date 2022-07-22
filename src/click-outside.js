@@ -13,8 +13,6 @@ let callbacks = []
 
 export default {
     bind: (el, binding, vnode)=> {
-        console.log(el)
-        console.log(binding)
         callbacks.push({ el, callback: binding.value })
     }
 }
