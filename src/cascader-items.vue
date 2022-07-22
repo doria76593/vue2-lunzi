@@ -41,6 +41,7 @@ export default {
       // 因为点击选中的就是最后一项
       let copy = JSON.parse(JSON.stringify(this.selected))
       copy[this.level] = item
+      copy.splice(this.level+1)
       this.$emit('update:selected', copy)
     },
     onUpdateSelected(newSelected) {
