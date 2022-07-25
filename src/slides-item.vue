@@ -1,7 +1,7 @@
 <template>
   <transition name="slide">
-    <div class="g-slides-item" v-if="visible">
-      <slot></slot>
+    <div class="g-slides-item" v-if="visible" :class="{reverse}">
+      <slot :reverse="reverse"></slot>
     </div>
   </transition>
 </template>
@@ -16,13 +16,16 @@ export default {
   data() {
     return {
       selected: undefined,
+      reverse: false,
     }
   },
   methods: {},
   computed: {
     visible() {
-      //   console.log(`我的name是${this.name}`)
-      //   console.log(`我的方向是${this.reverse ? '反向' : '正向'}`)
+      if (this.selected === this.name) {
+        console.log(`我的name是${this.name}`)
+        console.log(`我的方向是${this.reverse ? '反向' : '正向'}`)
+      }
       return this.selected === this.name
     },
   },
@@ -41,12 +44,19 @@ export default {
 }
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 2s;
+  transition: all 3s;
 }
 .slide-enter {
+  transform: translateX(-100%);
+}
+
+.slide-enter.reverse {
   transform: translateX(100%);
 }
 .slide-leave-to {
+  transform: translateX(100%);
+}
+.slide-leave-to.reverse {
   transform: translateX(-100%);
 }
 </style>

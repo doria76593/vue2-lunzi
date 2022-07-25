@@ -3,13 +3,28 @@
     {{selected}}
     <g-slides class="wrapper" :selected.sync="selected">
       <g-slides-item name="老大">
-        <div class="box">0</div>
+        <template slot-scope="{reverse}">
+          <div class="box box1">老大---0-{{reverse}}--{{reverse ? '反向' : '正向'}}</div>
+        </template>
+
       </g-slides-item>
       <g-slides-item name="老二">
-        <div class="box">1</div>
+        <template slot-scope="{reverse}">
+          <div class="box box2">老二---1--{{reverse}}--{{reverse ? '反向' : '正向'}}</div>
+        </template>
+
       </g-slides-item>
       <g-slides-item name="老三">
-        <div class="box">2</div>
+        <template slot-scope="{reverse}">
+          <div class="box box3">老三---2--{{reverse}}--{{reverse ? '反向' : '正向'}}</div>
+        </template>
+
+      </g-slides-item>
+      <g-slides-item name="老四">
+        <template slot-scope="{reverse}">
+          <div class="box box4">老四---3--{{reverse}}--{{reverse ? '反向' : '正向'}}</div>
+        </template>
+
       </g-slides-item>
     </g-slides>
   </div>
@@ -25,7 +40,7 @@ export default {
   },
   data() {
     return {
-      selected: '老二',
+      selected: '老三',
     }
   },
   methods: {},
@@ -46,5 +61,17 @@ export default {
   justify-content: center;
   align-items: center;
   font-size: 30px;
+  &.box1 {
+    background: pink;
+  }
+  &.box2 {
+    background: yellow;
+  }
+  &.box3 {
+    background: blueviolet;
+  }
+  &.box4 {
+    background: rgb(30, 143, 58);
+  }
 }
 </style>
