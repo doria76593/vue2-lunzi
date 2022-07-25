@@ -1,7 +1,9 @@
 <template>
-  <div class="g-slides-item" v-if="visible">
-    <slot></slot>
-  </div>
+  <transition name="slide">
+    <div class="g-slides-item" v-if="visible">
+      <slot></slot>
+    </div>
+  </transition>
 </template>
 <script>
 export default {
@@ -28,9 +30,27 @@ export default {
 </script>
 <style scoped lang="scss">
 .g-slides-item {
-  position: absolute;
+  /* position: absolute;
   width: 100%;
   top: 0;
+  left: 0; */
+}
+/* 让离开的leave-active定位，其他的元素没有定位，父元素就有高度了。 */
+.slide-leave-active {
+  position: absolute;
   left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 3s;
+}
+.slide-enter {
+  transform: translateX(100%);
+}
+.slide-leave-to {
+  transform: translateX(-100%);
 }
 </style>

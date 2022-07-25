@@ -1,14 +1,15 @@
 <template>
   <div class="demo8">
+    {{selected}}
     <g-slides class="wrapper" :selected.sync="selected">
-      <g-slides-item name="1">
+      <g-slides-item name="老大">
+        <div class="box">0</div>
+      </g-slides-item>
+      <g-slides-item name="老二">
         <div class="box">1</div>
       </g-slides-item>
-      <g-slides-item name="2">
+      <g-slides-item name="老三">
         <div class="box">2</div>
-      </g-slides-item>
-      <g-slides-item name="3">
-        <div class="box">3</div>
       </g-slides-item>
     </g-slides>
   </div>
@@ -24,7 +25,7 @@ export default {
   },
   data() {
     return {
-      selected: '2',
+      selected: '老二',
     }
   },
   methods: {},
@@ -32,13 +33,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.demo8{
-    padding: 20px;
+.demo8 {
+  padding: 20px;
 }
 .box {
   width: 100%;
-  height: 350px;
+  height: 200px;
   background: #ddd;
   border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
 }
 </style>
