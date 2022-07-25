@@ -1,5 +1,5 @@
 <template>
-  <div class="g-slides">
+  <div class="g-slides" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @touchstart="onTouchStart" @touchend="onTouchEnd">
     <div class="g-slides-window" ref="window">
       <div class="g-slides-wrapper">
         <slot></slot>
@@ -61,6 +61,38 @@ export default {
         newIndex = 0
       }
       this.$emit('update:selected', this.names[newIndex])
+    },
+    onMouseEnter() {
+      this.pause()
+    },
+    onMouseLeave() {
+      this.playAutomatically()
+    },
+    onTouchStart(e) {
+      this.pause()
+      if (e.touches.length > 1) {
+        return
+      }
+      this.startTouch = e.touches[0]
+    },
+    onTouchEnd(e) {
+      let endTouch = e.changedTouches[0]
+      let { clientX: x1, clientY: y1 } = this.startTouch
+      let { clientX: x2, clientY: y2 } = endTouch
+
+      let distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))
+      let deltaY = Math.abs(y2 - y1)
+      let rate = distance / deltaY
+      if (rate > 2) {
+        if (x2 > x1) {
+          this.select(this.selectedIndex - 1)
+        } else {
+          this.select(this.selectedIndex + 1)
+        }
+      }
+      this.$nextTick(() => {
+        this.playAutomatically()
+      })
     },
     clearInterval() {
       window.clearTimeout(this.timerId)
