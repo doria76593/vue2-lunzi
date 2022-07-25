@@ -33,6 +33,8 @@ export default {
     return {
       timerId: null,
       childrenLength: 0,
+      lastSelectedIndex: undefined,
+      startTouch: undefined,
     }
   },
   mounted() {
@@ -52,15 +54,6 @@ export default {
         this.timerId = setTimeout(run, 3000)
       }
       this.timerId = setTimeout(run, 3000)
-    },
-    select(newIndex) {
-      if (newIndex < 0) {
-        newIndex = this.names.length - 1
-      }
-      if (newIndex > this.names.length - 1) {
-        newIndex = 0
-      }
-      this.$emit('update:selected', this.names[newIndex])
     },
     onMouseEnter() {
       this.pause()
@@ -111,6 +104,16 @@ export default {
       let first = this.$children[0]
       return this.selected || first.name
     },
+    select(newIndex) {
+      this.lastSelectedIndex = this.selectedIndex
+      if (newIndex < 0) {
+        newIndex = this.names.length - 1
+      }
+      if (newIndex > this.names.length - 1) {
+        newIndex = 0
+      }
+      this.$emit('update:selected', this.names[newIndex])
+    },
   },
   watch: {
     selected: {
@@ -120,6 +123,29 @@ export default {
         this.$nextTick(() => {
           this.$children.forEach((vm) => {
             vm.selected = val
+            console.log(
+              'reverse====',
+              this.selectedIndex,
+              this.lastSelectedIndex
+            )
+            let reverse =
+              this.selectedIndex > this.lastSelectedIndex ? false : true
+            if (this.lastSelectedIndex === undefined) {
+              reverse = false
+            }
+            if (
+              this.lastSelectedIndex === this.items.length - 1 &&
+              this.selectedIndex === 0
+            ) {
+              reverse = false
+            }
+            if (
+              this.lastSelectedIndex === 0 &&
+              this.selectedIndex === this.items.length - 1
+            ) {
+              reverse = true
+            }
+            vm.reverse = reverse
           })
         })
       },
