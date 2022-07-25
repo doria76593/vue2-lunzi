@@ -30,10 +30,6 @@ export default {
 </script>
 <style scoped lang="scss">
 .g-slides-item {
-  /* position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0; */
 }
 /* 让离开的leave-active定位，其他的元素没有定位，父元素就有高度了。 */
 .slide-leave-active {
@@ -45,7 +41,7 @@ export default {
 }
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 3s;
+  transition: all 2s;
 }
 .slide-enter {
   transform: translateX(100%);

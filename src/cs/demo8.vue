@@ -34,7 +34,8 @@ export default {
 
 <style scoped lang="scss">
 .demo8 {
-  padding: 20px;
+  padding: 100px;
+  width: 500px;
 }
 .box {
   width: 100%;

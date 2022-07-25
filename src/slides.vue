@@ -25,13 +25,25 @@ export default {
   },
   mounted() {
     let index = this.names.indexOf(this.getSelected())
-    setInterval(() => {
+    // setInterval(() => {
+    //   index++
+    //   if (index > this.$children.length - 1) {
+    //     index = 0
+    //   }
+    //   this.$emit('update:selected', this.names[index])
+    // }, 2000)
+
+    let run = () => {
+      console.log('index', index)
       index++
       if (index > this.$children.length - 1) {
         index = 0
       }
       this.$emit('update:selected', this.names[index])
-    }, 2000)
+      setTimeout(run, 2000)
+    }
+    // run()//立即执行 或者2秒后再执行
+    setTimeout(run,2000)
   },
   methods: {
     getSelected() {
@@ -63,12 +75,11 @@ export default {
 <style scoped lang="scss">
 .g-slides {
   border: 1px solid black;
- .g-slides-window {
-    overflow: hidden;
+  .g-slides-window {
+    /* overflow: hidden; */
   }
   .g-slides-wrapper {
     position: relative;
-    /* height: 200px; */
   }
 }
 </style>
