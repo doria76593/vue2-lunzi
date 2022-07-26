@@ -26,8 +26,6 @@ export default {
   },
   methods: {
     addItem(vm) {
-      console.log('addItem')
-      console.log(vm)
       this.items.push(vm)
     },
     listenToChildren() {
@@ -43,7 +41,6 @@ export default {
       immediate: true,
       deep: true,
       handler(val) {
-        console.log('val', val)
         this.$nextTick(() => {
           this.items.forEach((vm) => {
             if (this.selected === vm.name) {
@@ -60,8 +57,9 @@ export default {
 </script>
 <style scoped lang="scss">
 .g-nav {
-  border: 1px solid red;
   display: flex;
-  cursor: pointer;
+  border-bottom: 1px solid $grey;
+  color: $color;
+  cursor:pointer;
 }
 </style>

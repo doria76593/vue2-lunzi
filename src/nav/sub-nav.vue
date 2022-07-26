@@ -36,8 +36,13 @@ export default {
     top: 100%;
     left: 0;
     border: 1px solid black;
-    background: yellow;
+    background: white;
     white-space: nowrap;
+    box-shadow: 0 0 3px fade_out(black, 0.8);
+    border-radius: $border-radius;
+    font-size: $font-size;
+    color: $light-color;
+    min-width: 8em;
   }
 }
 .g-sub-nav .g-sub-nav .g-sub-nav-popover {

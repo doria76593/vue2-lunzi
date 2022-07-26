@@ -6,7 +6,7 @@
       <g-nav-item name="about">关于</g-nav-item>
       <g-nav-item name="hire">招聘</g-nav-item>
     </g-nav> -->
-    <h2>demo2--{{selected}}--支持任意层级</h2>
+    <h2>demo2--支持任意层级:  {{selected}}</h2>
     <g-nav :selected.sync="selected">
       <g-nav-item name="home">首页</g-nav-item>
       <g-sub-nav>
@@ -27,6 +27,7 @@
       </g-sub-nav>
       <g-nav-item name="hire">招聘</g-nav-item>
     </g-nav>
+     <p>你好，我是中文</p>
   </div>
 </template>
 <script>
