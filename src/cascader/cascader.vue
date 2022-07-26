@@ -96,7 +96,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../var';
 .cascader {
   position: relative;
   display: inline-block;

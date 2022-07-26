@@ -25,7 +25,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../var.scss';
 .g-button-group {
   display: inline-flex;
   align-items: center;
