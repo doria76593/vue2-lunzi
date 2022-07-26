@@ -6,20 +6,30 @@
 <script>
 export default {
   name: 'GuluNav',
+  provide() {
+    return {
+      root: this,
+    }
+  },
   props: {
     selected: {
       type: String,
     },
   },
-  computed: {
-    items() {
-      return this.$children.filter((vm) => vm.$options.name === 'GuluNavItem')
-    },
+  data() {
+    return {
+      items: [],
+    }
   },
   mounted() {
     this.listenToChildren()
   },
   methods: {
+    addItem(vm) {
+      console.log('addItem')
+      console.log(vm)
+      this.items.push(vm)
+    },
     listenToChildren() {
       this.items.forEach((vm) => {
         vm.$on('add:selected', (name) => {
