@@ -6,11 +6,18 @@
         <g-icon name="right"></g-icon>
       </span>
     </span>
-    <transition @enter="enter" @leave="leave" @after-leave="afterLeave" @after-enter="afterEnter">
-      <div class="g-sub-nav-popover" v-show="open" :class="{vertical}">
+    <template v-if="vertical">
+      <transition @enter="enter" @leave="leave" @after-leave="afterLeave" @after-enter="afterEnter">
+        <div class="g-sub-nav-popover" v-show="open" :class="{vertical}">
+          <slot></slot>
+        </div>
+      </transition>
+    </template>
+    <template v-else>
+      <div class="g-sub-nav-popover" v-show="open">
         <slot></slot>
       </div>
-    </transition>
+    </template>
   </div>
 
 </template>
@@ -110,12 +117,12 @@ export default {
     font-size: $font-size;
     color: $light-color;
     min-width: 8em;
+    transition: height 250ms;
     &.vertical {
       position: static;
       border-radius: 0;
       border: none;
       box-shadow: none;
-      transition: height 250ms;
       overflow: hidden;
     }
   }

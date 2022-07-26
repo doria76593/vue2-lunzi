@@ -21,7 +21,7 @@
       </g-sub-nav>
       <g-nav-item name="hire">招聘</g-nav-item>
     </g-nav>
-    <g-nav :selected.sync="selected" vertical style="width: 200px; margin: 100px;">
+    <g-nav :selected.sync="selected" vertical style="width: 200px; margin: 200px 20px 0;">
       <g-nav-item name="home">首页</g-nav-item>
       <g-sub-nav name="about">
         <template slot="title">关于</template>
