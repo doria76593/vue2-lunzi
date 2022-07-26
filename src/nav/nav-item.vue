@@ -1,5 +1,5 @@
 <template>
-  <div class="g-nav-item">
+  <div class="g-nav-item" :class="{selected}" @click="onClick">
     <slot></slot>
   </div>
 </template>
@@ -14,10 +14,22 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      selected: false,
+    }
   },
-  methods: {},
+  methods: {
+    onClick() {
+      this.$emit('add:selected', this.name)
+    },
+  },
 }
 </script>
 <style scoped lang="scss">
+.g-nav-item {
+  padding: 10px 20px;
+  &.selected {
+    background: red;
+  }
+}
 </style>

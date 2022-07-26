@@ -13,10 +13,12 @@ export default {
   components: {},
   data() {
     return {
-      selected: '关于',
+      selected: 'about',
     }
   },
-  methods: {},
+  methods: {
+
+  },
 }
 </script>
 <style scoped lang="scss">
