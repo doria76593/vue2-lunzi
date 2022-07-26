@@ -1,5 +1,5 @@
 <template>
-  <div class="g-sub-nav">
+  <div class="g-sub-nav" :class="{active}" v-click-outside="close">
     <span @click="onClick">
       <slot name="title"></slot>
     </span>
@@ -10,16 +10,41 @@
 
 </template>
 <script>
+import ClickOutside from '../click-outside'
 export default {
   name: 'GuluSubNav',
+  inject: ['root'],
+  directives: { ClickOutside },
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       open: false,
     }
   },
+  computed: {
+    active() {
+      return this.root.namePath.indexOf(this.name) >= 0 ? true : false
+    },
+  },
   methods: {
     onClick() {
       this.open = !this.open
+    },
+    close() {
+      this.open = false
+    },
+    updateNamePath() {
+      this.root.namePath.unshift(this.name)
+      if (this.$parent.updateNamePath) {
+        this.$parent.updateNamePath()
+      } else {
+        //  console.log('到顶了');
+      }
     },
   },
 }
@@ -27,6 +52,16 @@ export default {
 <style scoped lang="scss">
 .g-sub-nav {
   position: relative;
+  &.active {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-bottom: 2px solid $blue;
+      width: 100%;
+    }
+  }
   > span {
     padding: 10px 20px;
     display: block;
@@ -45,9 +80,11 @@ export default {
     min-width: 8em;
   }
 }
-.g-sub-nav .g-sub-nav .g-sub-nav-popover {
-  top: 0;
-  left: 100%;
-  margin-left: 8px;
+.g-sub-nav .g-sub-nav {
+  .g-sub-nav-popover {
+    top: 0;
+    left: 100%;
+    margin-left: 8px;
+  }
 }
 </style>
