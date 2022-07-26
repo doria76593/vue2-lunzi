@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import db from '../db'
+import db from '../../tests/fixtures/db'
 function ajax(parentId = 0) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
