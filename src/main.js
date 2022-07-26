@@ -23,7 +23,7 @@ import TabsItem from './tab/tabs-item.vue'
 import TabsPane from './tab/tabs-pane.vue'
 
 import Popover from './popover.vue'
-import Collapse from './collapse/collapse.vue'  
+import Collapse from './collapse/collapse.vue'
 import CollapseItem from './collapse/collapse-item.vue'
 
 import Cascader from './cascader/cascader.vue'
@@ -31,6 +31,9 @@ import CascaderItems from './cascader/cascader-items.vue'
 
 import GSlides from './slides/slides.vue'
 import GSlidesItem from './slides/slides-item.vue'
+import GNav from './nav/nav.vue'
+import GNavItem from './nav/nav-item.vue'
+import GSubNav from './nav/sub-nav.vue'
 
 
 Vue.config.productionTip = false
@@ -58,6 +61,9 @@ Vue.component('g-cascader', Cascader)
 Vue.component('g-cascader-item', CascaderItems)
 Vue.component('g-slides', GSlides)
 Vue.component('g-slides-item', GSlidesItem)
+Vue.component('g-nav', GNav)
+Vue.component('g-nav-item', GNavItem)
+Vue.component('g-sub-nav', GSubNav)
 
 Vue.use(plugin)
 

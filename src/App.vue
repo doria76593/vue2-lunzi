@@ -1,6 +1,6 @@
 <template>
   <div>
-    <demo4></demo4>
+    <demo9></demo9>
   </div>
 </template>
 
@@ -13,9 +13,10 @@ import demo5 from './cs/demo5.vue'
 import demo6 from './cs/demo6'
 import demo7 from './cs/demo7'
 import demo8 from './cs/demo8.vue'
+import demo9 from './cs/demo9'
 export default {
   components: {
-    demo1,demo2,demo3,demo4,demo5,demo6,demo7,demo8,
+    demo1,demo2,demo3,demo4,demo5,demo6,demo7,demo8,demo9
   },
   data() {
     return {}
