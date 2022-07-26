@@ -1,8 +1,8 @@
 <template>
-  <div class="g-sub-nav" :class="{active}" v-click-outside="close">
+  <div class="g-sub-nav" :class="{active,vertical}" v-click-outside="close">
     <span class="g-sub-nav-label" @click="onClick">
       <slot name="title"></slot>
-      <span class="g-sub-nav-icon" :class="{open}">
+      <span class="g-sub-nav-icon" :class="{open,vertical}">
         <g-icon name="right"></g-icon>
       </span>
     </span>
@@ -88,14 +88,17 @@ export default {
 <style scoped lang="scss">
 .g-sub-nav {
   position: relative;
-  &.active {
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      border-bottom: 2px solid $blue;
-      width: 100%;
+
+  &:not(.vertical) {
+    &.active {
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-bottom: 2px solid $blue;
+        width: 100%;
+      }
     }
   }
   &-label {
