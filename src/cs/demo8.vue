@@ -31,13 +31,8 @@
 </template>
 
 <script>
-import GSlides from '../slides.vue'
-import GSlidesItem from '../slides-item'
+
 export default {
-  components: {
-    GSlides,
-    GSlidesItem,
-  },
   data() {
     return {
       selected: '老三',

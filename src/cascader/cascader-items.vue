@@ -87,7 +87,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import 'var';
+@import '../var';
 .cascaderItem {
   display: flex;
   align-items: flex-start;

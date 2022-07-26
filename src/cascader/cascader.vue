@@ -4,18 +4,16 @@
       {{result}}
     </div>
     <div class="popover-wrapper" v-if="popoverVisible">
-      <cascader-items :items="source" class="popover" :loading-item="loadingItem" :loadData="loadData" :height="popoverHeight" :selected="selected"
-        @update:selected="onUpdateSelected"></cascader-items>
+      <g-cascader-item :items="source" class="popover" :loading-item="loadingItem" :loadData="loadData" :height="popoverHeight" :selected="selected"
+        @update:selected="onUpdateSelected"></g-cascader-item>
     </div>
   </div>
 </template>
 
 <script>
-import CascaderItems from './cascader-items'
-import ClickOutside from './click-outside'
+import ClickOutside from '../click-outside'
 export default {
   name: 'GuluCascader',
-  components: { CascaderItems },
   directives: { ClickOutside },
   props: {
     source: {
@@ -98,7 +96,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import 'var';
+@import '../var';
 .cascader {
   position: relative;
   display: inline-block;
