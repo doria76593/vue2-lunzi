@@ -1,6 +1,8 @@
 <template>
-  <div class="gulu-sticky-wrapper" :class="{sticky}" ref="wrapper">
-    <slot></slot>
+  <div class="gulu-sticky-wrapper" ref="wrapper">
+    <div class="gulu-sticky" :class="{sticky}">
+      <slot></slot>
+    </div>
   </div>
 </template>
 <script>
@@ -13,16 +15,17 @@ export default {
     }
   },
   mounted() {
-    let {top} = this.offsetTop()//注意点1 元素距离顶部的距离只能获取一次，不然会有bug
-    console.log('top', top)
+    let { top, height } = this.offsetTop()//注意点1 元素距离顶部的距离只能获取一次，不然会有bug
+    console.log('top', top, height)
+    this.$refs.wrapper.style.height = height + 'px'//bug2:用自己的高度给自己，让自己占位，里面的元素去fix
     window.addEventListener('scroll', () => {
       let scrollTop = this.getScroll().scrollTop
-      console.log('scrollTop', scrollTop)
+      console.log(`top:${top}---scrollTop:${scrollTop}`)
       if (scrollTop > top) {
         console.log('sticky了')
         this.sticky = true
       } else {
-        console.log('没有',top)
+        console.log('没有')
         this.sticky = false
       }
     })
@@ -34,10 +37,9 @@ export default {
   },
   methods: {
     offsetTop() {
-      let { top } = this.$refs.wrapper.getBoundingClientRect()
+      let { top, height } = this.$refs.wrapper.getBoundingClientRect()
       let scrollTop = this.getScroll().scrollTop
-      console.log(`top:${top}---scrollTop:${scrollTop}`)
-      return { top: top + scrollTop }
+      return { top: top + scrollTop, height }
     },
     getScroll() {
       var scrollLeft = window.pageXOffset !== undefined ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft
@@ -48,7 +50,7 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-.gulu-sticky-wrapper {
+.gulu-sticky {
   &.sticky {
     position: fixed;
     width: 100%;

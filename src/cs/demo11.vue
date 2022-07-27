@@ -1,10 +1,20 @@
 <template>
   <div>
-    <div class="content1">content1</div>
+    <!-- <div class="content1">content1</div> -->
     <g-sticky>
       <div class="one">one</div>
     </g-sticky>
-    <div class="content2">content2</div>
+    <div class="content2">
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+      <p>7</p>
+      <p>8</p>
+      <p>9</p>
+    </div>
   </div>
 </template>
 <script>
@@ -21,8 +31,11 @@ export default {
   background: yellow;
 }
 .content2 {
-  height: 1200px;
+  /* height: 1200px; */
   background: pink;
+  >p{
+    height: 30px;
+  }
 }
 .one {
   height: 100px;
