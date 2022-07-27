@@ -13,14 +13,16 @@ export default {
     }
   },
   mounted() {
-    let top = this.offsetTop()//注意点1 元素距离顶部的距离只能获取一次，不然会有bug
+    let {top} = this.offsetTop()//注意点1 元素距离顶部的距离只能获取一次，不然会有bug
     console.log('top', top)
     window.addEventListener('scroll', () => {
       let scrollTop = this.getScroll().scrollTop
       console.log('scrollTop', scrollTop)
-      if (scrollTop>top) {
+      if (scrollTop > top) {
+        console.log('sticky了')
         this.sticky = true
       } else {
+        console.log('没有',top)
         this.sticky = false
       }
     })
