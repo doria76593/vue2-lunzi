@@ -1,12 +1,11 @@
 <template>
   <div class="popover" ref="popover">
-    <div ref="contentWrapper" class="content-wrapper" :class="{[`position-${position}`]:true}" v-if="visible">
+    <div ref="contentWrapper" class="content-wrapper" :class="{ [`position-${position}`]: true }" v-if="visible">
       <slot name="content" :close="close"></slot>
     </div>
-    <span ref="triggerWrapper" style="display: inline-block;">
+    <span ref="triggerWrapper" style="display: inline-block">
       <slot></slot>
     </span>
-
   </div>
 </template>
 
@@ -109,26 +108,11 @@ export default {
       }
     },
     getScroll() {
-      var x =
-        window.pageXOffset !== undefined
-          ? window.pageXOffset
-          : (
-              document.documentElement ||
-              document.body.parentNode ||
-              document.body
-            ).scrollLeft
-      var y =
-        window.pageYOffset !== undefined
-          ? window.pageYOffset
-          : (
-              document.documentElement ||
-              document.body.parentNode ||
-              document.body
-            ).scrollTop
-      return {
-        x,
-        y,
-      }
+      var supportPageOffset = window.pageXOffset !== undefined
+      var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat")
+      var x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft
+      var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
+      return { x, y }
     },
   },
 }
@@ -170,7 +154,7 @@ $border-radius: 4px;
   &.position-top {
     transform: translateY(-100%);
     margin-top: -10px;
-    
+
     &::before,
     &::after {
       left: 10px;
@@ -238,4 +222,4 @@ $border-radius: 4px;
     }
   }
 }
-</style> 
+</style>
