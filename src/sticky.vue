@@ -13,10 +13,12 @@ export default {
     }
   },
   mounted() {
+    let top = this.offsetTop()//注意点1 元素距离顶部的距离只能获取一次，不然会有bug
+    console.log('top', top)
     window.addEventListener('scroll', () => {
-      //   console.log()
-      let { top } = this.offsetTop()
-      if (top < 0) {
+      let scrollTop = this.getScroll().scrollTop
+      console.log('scrollTop', scrollTop)
+      if (scrollTop>top) {
         this.sticky = true
       } else {
         this.sticky = false
@@ -33,7 +35,7 @@ export default {
       let { top } = this.$refs.wrapper.getBoundingClientRect()
       let scrollTop = this.getScroll().scrollTop
       console.log(`top:${top}---scrollTop:${scrollTop}`)
-      return { top, scrollTop }
+      return { top: top + scrollTop }
     },
     getScroll() {
       var scrollLeft = window.pageXOffset !== undefined ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft

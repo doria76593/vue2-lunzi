@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="content1">content1</div>
+    <!-- <div class="content1">content1</div> -->
     <g-sticky>
       <div class="one">one</div>
     </g-sticky>
