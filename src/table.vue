@@ -26,6 +26,9 @@
         </tr>
       </tbody>
     </table>
+    <div v-if="loading" class="gulu-table-loading">
+      <g-icon name="loading" />
+    </div>
   </div>
 </template>
 <script>
@@ -63,6 +66,10 @@ export default {
     orderBy: {
       type: Object,
       default: () => ({}),
+    },
+    loading: {
+      type: Boolean,
+      default: false
     },
   },
   data() {
@@ -189,6 +196,25 @@ $grey: darken($grey, 10%);
       &:nth-child(2) {
         margin-top: -1px;
       }
+    }
+  }
+}
+.gulu-table-wrapper {
+  position: relative;
+  .gulu-table-loading {
+    background: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      width: 50px;
+      height: 50px;
+      @include spin;
     }
   }
 }

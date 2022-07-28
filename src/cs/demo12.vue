@@ -2,11 +2,11 @@
   <div>
     <h2>表格1--{{orderBy}}</h2>
     <div style="margin: 20px;">
-      <g-table :columns="columns" :data-source="dataSource" bordered :selectedItems.sync="selected" :order-by.sync="orderBy"></g-table>
+      <g-table :columns="columns" :data-source="dataSource" bordered :selectedItems.sync="selected" :order-by.sync="orderBy" @update:orderBy="x" :loading="loading"></g-table>
     </div>
     <h2>表格2</h2>
     <div style="margin: 20px;">
-      <g-table :columns="columns" :data-source="dataSource" numberVisible compact :striped="false"></g-table>
+      <g-table :columns="columns" :data-source="dataSource" numberVisible compact :striped="false" :loading="loading"></g-table>
     </div>
   </div>
 </template>
@@ -31,11 +31,18 @@ export default {
         { id: 6, name: '蝙蝠侠', score: 99 },
         { id: 7, name: '蜘蛛侠', score: 100 },
         { id: 8, name: '钢铁侠', score: 99 },
-      ]
+      ],
+      loading: false,
     }
   },
   methods: {
-
+    x() {
+      this.loading = true
+      setTimeout(() => {
+        this.dataSource = this.dataSource.sort((a, b) => a.score - b.score)
+        this.loading = false
+      }, 3000)
+    }
   },
 }
 </script>
