@@ -36,6 +36,7 @@ import GNavItem from './nav/nav-item.vue'
 import GSubNav from './nav/sub-nav.vue'
 import GPager from './pager.vue'
 import GSticky from './sticky.vue'
+import GTable from './table.vue'
 
 
 Vue.config.productionTip = false
@@ -68,6 +69,7 @@ Vue.component('g-nav-item', GNavItem)
 Vue.component('g-sub-nav', GSubNav)
 Vue.component('g-pager', GPager)
 Vue.component('g-sticky', GSticky)
+Vue.component('g-table', GTable)
 
 Vue.use(plugin)
 
