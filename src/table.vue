@@ -3,15 +3,15 @@
     <table class="gulu-table" :class="{bordered, compact, striped: striped}">
       <thead>
         <tr>
-          <th><input type="checkbox" /></th>
+          <th><input type="checkbox" @change="onChangeAllItems" ref="allChecked" /></th>
           <th v-if="numberVisible">#</th>
-          <th v-for="(column,index) in columns" :key="index">{{column.text}}</th>
+          <th v-for="column in columns" :key="column.field">{{column.text}}</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(item,index) in dataSource" :key="item.id">
           <td>
-            <input type="checkbox" @change="onChangeItem(item, index, $event)" />
+            <input type="checkbox" @change="onChangeItem(item, index, $event)" :checked="inSelectedItems(item)" />
           </td>
           <td v-if="numberVisible">{{index}}</td>
           <td v-for="column in columns" :key="column.field">{{item[column.field]}}</td>
@@ -24,6 +24,10 @@
 export default {
   name: "GuluTable",
   props: {
+    selectedItems: {
+      type: Array,
+      default: () => []
+    },
     columns: {
       type: Array,
       required: true
@@ -52,11 +56,36 @@ export default {
   data() {
     return {}
   },
+  watch: {
+    selectedItems() {
+      if (this.selectedItems.length === this.dataSource.length) {
+        this.$refs.allChecked.indeterminate = false
+      } else if (this.selectedItems.length === 0) {
+        this.$refs.allChecked.indeterminate = false
+      } else {
+        this.$refs.allChecked.indeterminate = true
+      }
+    }
+  },
   methods: {
     onChangeItem(item, index, e) {
       let selected = e.target.checked
-      this.$emit('changeItem', { item, index, selected })
-    }
+      let copy = JSON.parse(JSON.stringify(this.selectedItems))
+      if (selected) {
+        copy.push(item)
+      } else {
+        copy = copy.filter(i => i.id !== item.id)
+      }
+      this.$emit('update:selectedItems', copy)
+    },
+    onChangeAllItems(e) {
+      let selected = e.target.checked
+      console.log('eee', selected)
+      this.$emit('update:selectedItems', selected ? this.dataSource : [])
+    },
+    inSelectedItems(item) {
+      return this.selectedItems.filter(i => i.id === item.id).length > 0
+    },
   },
 }
 </script>

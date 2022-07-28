@@ -2,7 +2,7 @@
   <div>
     <h2>表格1--{{selected}}</h2>
     <div style="margin: 20px;">
-      <g-table :columns="columns" :data-source="dataSource" bordered @changeItem="changeItem"></g-table>
+      <g-table :columns="columns" :data-source="dataSource" bordered :selectedItems.sync="selected"></g-table>
     </div>
     <h2>表格2</h2>
     <div style="margin: 20px;">
@@ -32,14 +32,7 @@ export default {
     }
   },
   methods: {
-    changeItem({ item, index, selected }) {
-      if (selected) {
-        this.selected.push(item)
-      } else {
-        let index = this.selected.indexOf(item)
-        this.selected.splice(index, 1)
-      }
-    }
+
   },
 }
 </script>
