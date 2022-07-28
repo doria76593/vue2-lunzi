@@ -1,5 +1,5 @@
 <template>
-  <div class="gulu-table-wrapper">
+  <div class="gulu-table-wrapper" v-loading="loading">
     <table class="gulu-table" :class="{bordered, compact, striped: striped}">
       <thead>
         <tr>
@@ -26,14 +26,13 @@
         </tr>
       </tbody>
     </table>
-    <div v-if="loading" class="gulu-table-loading">
-      <g-icon name="loading" />
-    </div>
   </div>
 </template>
 <script>
+import loading from './loading'
 export default {
   name: "GuluTable",
+  directives: { loading },
   props: {
     selectedItems: {
       type: Array,
@@ -201,21 +200,5 @@ $grey: darken($grey, 10%);
 }
 .gulu-table-wrapper {
   position: relative;
-  .gulu-table-loading {
-    background: rgba(255, 255, 255, 0.8);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    svg {
-      width: 50px;
-      height: 50px;
-      @include spin;
-    }
-  }
 }
 </style>
