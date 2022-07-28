@@ -19,13 +19,28 @@ export default {
     //bug2:用自己的高度给自己，让自己占位，里面的元素去fix
     // bug3:图片资源可能延迟加载，到时获取的高度不正确
     // bug4:要动态设置left和width
-    let { top } = this.offsetTop()
-    // this.$refs.wrapper.style.height = height + 'px'
-    window.addEventListener('scroll', () => {
-      let scrollTop = this.getScroll().scrollTop
-      console.log(`top:${top}---scrollTop:${scrollTop}`)
+    this.top = this.offsetTop().top
+    window.addEventListener('scroll', this.windowScrollHandler)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.windowScrollHandler)
+  },
+  data() {
+    return {
+      sticky: false,
+      top: 0,
+      height: undefined,
+      left: undefined,
+      width: undefined,
+    }
+  },
+  methods: {
+    windowScrollHandler() {
 
-      if (scrollTop > top) {
+      let scrollTop = this.getScroll().scrollTop
+      console.log(`top:${this.top}---scrollTop:${scrollTop}`)
+
+      if (scrollTop > this.top) {
         let { left, width } = this.$refs.wrapper.getBoundingClientRect()
         let { height } = this.$refs.wrapper2.getBoundingClientRect()
         console.log(`height:${height}---left:${left}---width:${width}`)
@@ -38,17 +53,7 @@ export default {
         console.log('没有')
         this.sticky = false
       }
-    })
-  },
-  data() {
-    return {
-      sticky: false,
-      height: undefined,
-      left: undefined,
-      width: undefined,
-    }
-  },
-  methods: {
+    },
     offsetTop() {
       let { top } = this.$refs.wrapper.getBoundingClientRect()
       let scrollTop = this.getScroll().scrollTop

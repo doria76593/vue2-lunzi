@@ -43,7 +43,7 @@ img{
   background: yellowgreen;
 }
 .content2 {
-  /* height: 1200px; */
+  height: 1200px;
   background: pink;
   > p {
     height: 30px;
