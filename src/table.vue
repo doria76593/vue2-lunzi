@@ -5,7 +5,15 @@
         <tr>
           <th><input type="checkbox" @change="onChangeAllItems" ref="allChecked" :checked="areAllItemsSelected" /></th>
           <th v-if="numberVisible">#</th>
-          <th v-for="column in columns" :key="column.field">{{column.text}}</th>
+          <th v-for="column in columns" :key="column.field">
+            <div class="gulu-table-header">
+              {{column.text}}
+              <span v-if="column.field in orderBy" class="gulu-table-sorter" @click="changeOrderBy(column.field)">
+                <g-icon name="asc" :class="{active: orderBy[column.field] === 'asc'}" />
+                <g-icon name="desc" :class="{active: orderBy[column.field] === 'desc'}" />
+              </span>
+            </div>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -52,6 +60,10 @@ export default {
       type: Boolean,
       default: false
     },
+    orderBy: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   data() {
     return {}
@@ -83,6 +95,18 @@ export default {
     }
   },
   methods: {
+    changeOrderBy(key) {
+      const copy = JSON.parse(JSON.stringify(this.orderBy))
+      let oldValue = copy[key]
+      if (oldValue === 'asc') {
+        copy[key] = 'desc'
+      } else if (oldValue === 'desc') {
+        copy[key] = true
+      } else {
+        copy[key] = 'asc'
+      }
+      this.$emit('update:orderBy', copy)
+    },
     onChangeItem(item, index, e) {
       let selected = e.target.checked
       let copy = JSON.parse(JSON.stringify(this.selectedItems))
@@ -139,6 +163,31 @@ $grey: darken($grey, 10%);
         &:nth-child(even) {
           background: lighten($grey, 13%);
         }
+      }
+    }
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+  }
+  &-sorter {
+    display: inline-flex;
+    flex-direction: column;
+    margin: 0 4px;
+    cursor: pointer;
+    svg {
+      width: 10px;
+      height: 10px;
+      fill: $grey;
+      &.active {
+        fill: red;
+      }
+      &:first-child {
+        margin-bottom: -1px;
+      }
+      &:nth-child(2) {
+        margin-top: -1px;
       }
     }
   }

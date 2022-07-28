@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2>表格1--{{selected}}</h2>
+    <h2>表格1--{{orderBy}}</h2>
     <div style="margin: 20px;">
-      <g-table :columns="columns" :data-source="dataSource" bordered :selectedItems.sync="selected"></g-table>
+      <g-table :columns="columns" :data-source="dataSource" bordered :selectedItems.sync="selected" :order-by.sync="orderBy"></g-table>
     </div>
     <h2>表格2</h2>
     <div style="margin: 20px;">
@@ -19,6 +19,9 @@ export default {
         { text: '姓名', field: 'name' },
         { text: '分数', field: 'score' },
       ],
+      orderBy: { // true - 开启排序，但是不确定asc desc
+        score: 'desc'
+      },
       dataSource: [
         { id: 1, name: '方方', score: 100 },
         { id: 2, name: '圆圆', score: 99 },
