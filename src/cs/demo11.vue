@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="content1">content1</div>
-    <g-sticky>
+    <g-sticky :distance="100">
       <div class="one">
         <img
           src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.alicdn.com%2Fimgextra%2Fi3%2F365866548%2FTB2OZpennvI8KJjSspjXXcgjXXa_%21%21365866548.jpg&refer=http%3A%2F%2Fimg.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1661507844&t=e9fc9d2acfcc3b05fead7ab3a27d08ac"

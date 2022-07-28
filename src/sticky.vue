@@ -1,6 +1,6 @@
 <template>
   <div class="gulu-sticky-wrapper" ref="wrapper" :style="{height}">
-    <div class="gulu-sticky" ref="wrapper2" :class="{sticky}" :style="{left,width}">
+    <div class="gulu-sticky" ref="wrapper2" :class="{sticky}" :style="{left,width,top:distance+'px'}">
       <slot></slot>
     </div>
   </div>
@@ -38,19 +38,20 @@ export default {
     windowScrollHandler() {
 
       let scrollTop = this.getScroll().scrollTop
-      console.log(`top:${this.top}---scrollTop:${scrollTop}`)
+      // console.log(`top:${this.top}---scrollTop:${scrollTop}`)
 
-      if (scrollTop > this.top) {
+      if (scrollTop > this.top - this.distance) {
         let { left, width } = this.$refs.wrapper.getBoundingClientRect()
         let { height } = this.$refs.wrapper2.getBoundingClientRect()
-        console.log(`height:${height}---left:${left}---width:${width}`)
+        // console.log(`height:${height}---left:${left}---width:${width}`)
         this.height = height + 'px'
         this.left = left + 'px'
         this.with = width + 'px'
-        console.log('sticky了')
         this.sticky = true
       } else {
-        console.log('没有')
+        this.height = undefined
+        this.left = undefined
+        this.width = undefined
         this.sticky = false
       }
     },
